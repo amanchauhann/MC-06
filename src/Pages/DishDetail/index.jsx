@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useData } from "../../Contexts/DataContext"
 import { Avatar, Box, Button, Divider, Flex, Heading, Text, useDisclosure } from "@chakra-ui/react"
 import AddReviewModal from "../../Components/AddReviewModal"
@@ -11,9 +11,15 @@ const DishDetail = () => {
     const detailed_dish = restaurants?.filter(({ id }) => id === +restaurant_id)[0]
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-
+    console.log("aman", detailed_dish.ratings.reduce((sum, { rating }) => {
+        return sum = sum + rating;
+    }, 0))
     return (
         <Box maxW={"40rem"} m={"auto"}>
+            <Link to="/">
+                <Button mt={4} mb={5}>⬅️Go Back</Button>
+            </Link>
+
             <Flex justify={"space-between"}>
                 <Box>
                     <Heading>{detailed_dish.name}</Heading>
@@ -21,7 +27,9 @@ const DishDetail = () => {
                     <Text>{detailed_dish.menu.map(({ name }) => name).join(', ')}</Text>
 
                     <Text>{detailed_dish.address}</Text>
-                    <Text> Average rating: {detailed_dish.averageRating}</Text>
+                    <Text> Average rating: {detailed_dish.ratings.reduce((sum, { rating }) => {
+                        return sum = sum + rating;
+                    }, 0) / detailed_dish.ratings.length}</Text>
                 </Box>
                 <Button onClick={onOpen}>Add</Button>
             </Flex>

@@ -37,7 +37,7 @@ const AddReviewModal = ({ isOpen, onClose, id }) => {
                                 ...prev,
                                 review: {
                                     ...prev.review,
-                                    rating: e.target.value
+                                    rating: +e.target.value
                                 }
                             }))}>
                                 <option value="">Select a rating</option>

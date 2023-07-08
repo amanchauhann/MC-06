@@ -21,6 +21,7 @@ const Home = () => {
             <Heading>FOOD ORDERING APP</Heading>
             <Text>Select your cuisines:</Text>
             {cuisines.map((cuisine, i) => <CuisineButton key={i} {...cuisine} />)}
+            <Text>Selected Cuisine: {selected_cuisine ? cuisines.filter(each => each.id === selected_cuisine)[0].name : "None"}</Text>
             <Flex direction={"column"} gap={10}>
                 {selected_cuisine &&
                     selected_dishes.map(({ name, menu, id }) =>
@@ -30,9 +31,10 @@ const Home = () => {
                             </Link>
 
                             <Flex className="box" flexWrap={"wrap"} justify={"space-around"} >
-                                {menu.map(each => <DishCard {...each} />)}
+                                {menu.map(each => <DishCard id={id} {...each} />)}
                             </Flex>
                         </Flex>)}
+                {!selected_cuisine && <Heading pt={"8rem"} m={"auto"}>Select a cuisine to choose Restaurant from</Heading>}
             </Flex>
 
 
