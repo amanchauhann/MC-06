@@ -1,5 +1,4 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react"
-import { Link } from "react-router-dom"
 
 const DishCard = ({ name, imgSrc, price, qty, id }) => {
     return (

@@ -7,9 +7,9 @@ const DishDetail = () => {
     const { restaurant_id } = useParams()
     const { restaurant_data: { restaurants, cuisines, selected_cuisine
     } } = useData()
-    console.log(restaurants)
+
     const detailed_dish = restaurants?.filter(({ id }) => id === +restaurant_id)[0]
-    console.log("res", detailed_dish)
+
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (

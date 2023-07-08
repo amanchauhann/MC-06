@@ -5,6 +5,7 @@ import { useData } from "../Contexts/DataContext";
 const AddReviewModal = ({ isOpen, onClose, id }) => {
     const { restaurant_data: { restaurants, cuisines, selected_cuisine
     }, dispatch_restaurant } = useData()
+
     const [add_review, set_add_review] = useState({
         id: id,
         review: {
@@ -14,15 +15,14 @@ const AddReviewModal = ({ isOpen, onClose, id }) => {
             revName: "Aman"
         }
     })
+
     const ratingOptions = [1, 2, 3, 4, 5];
-    console.log(add_review)
+
     const add_review_handler = () => {
-        console.log("a")
         dispatch_restaurant({ type: "ADD_REVIEW", payload: add_review })
         onClose()
-
-
     }
+
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -61,7 +61,7 @@ const AddReviewModal = ({ isOpen, onClose, id }) => {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button mr={3} colorScheme='blue' onClick={add_review_handler}>Add review</Button>
+                        <Button mr={3} colorScheme='blue' onClick={add_review_handler} isDisabled={add_review.review.rating && add_review.review.comment.length > 0 ? false : true}>Add review</Button>
                         <Button variant='ghost' onClick={onClose}>
                             Close
                         </Button>

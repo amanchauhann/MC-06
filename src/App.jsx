@@ -7,8 +7,6 @@ import Home from './Pages/Home'
 import DishDetail from './Pages/DishDetail'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Routes>
