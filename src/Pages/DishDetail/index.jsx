@@ -11,9 +11,7 @@ const DishDetail = () => {
     const detailed_dish = restaurants?.filter(({ id }) => id === +restaurant_id)[0]
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    console.log("aman", detailed_dish.ratings.reduce((sum, { rating }) => {
-        return sum = sum + rating;
-    }, 0))
+
     return (
         <Box maxW={"40rem"} m={"auto"}>
             <Link to="/">
