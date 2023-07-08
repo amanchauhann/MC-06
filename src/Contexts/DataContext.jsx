@@ -20,6 +20,11 @@ const data_reducer = (state, { type, payload }) => {
                 ...state,
                 selected_cuisine: payload
             }
+        case ("ADD_REVIEW"):
+            return {
+                ...state,
+                restaurants: state.restaurants.map(each => each.id === payload.id ? { ...each, ratings: [...each.ratings, payload.review], } : each)
+            }
     }
 }
 

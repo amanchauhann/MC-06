@@ -1,14 +1,17 @@
 import { useParams } from "react-router-dom"
 import { useData } from "../../Contexts/DataContext"
-import { Avatar, Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react"
+import { Avatar, Box, Button, Divider, Flex, Heading, Text, useDisclosure } from "@chakra-ui/react"
+import AddReviewModal from "../../Components/AddReviewModal"
 
 const DishDetail = () => {
     const { restaurant_id } = useParams()
     const { restaurant_data: { restaurants, cuisines, selected_cuisine
     } } = useData()
-    // console.log(restaurants.map(({ id }) => id))
-    const detailed_dish = restaurants.filter(({ id }) => id === +restaurant_id)[0]
+    console.log(restaurants)
+    const detailed_dish = restaurants?.filter(({ id }) => id === +restaurant_id)[0]
     console.log("res", detailed_dish)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Box maxW={"40rem"} m={"auto"}>
             <Flex justify={"space-between"}>
@@ -20,7 +23,7 @@ const DishDetail = () => {
                     <Text>{detailed_dish.address}</Text>
                     <Text> Average rating: {detailed_dish.averageRating}</Text>
                 </Box>
-                <Button>Add</Button>
+                <Button onClick={onOpen}>Add</Button>
             </Flex>
 
             <Divider border={"1px solid black"} />
@@ -40,6 +43,7 @@ const DishDetail = () => {
 
 
             <Divider border={"1px solid black"} />
+            <AddReviewModal id={detailed_dish.id} isOpen={isOpen} onClose={onClose} />
         </Box>
 
     )
